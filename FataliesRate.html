@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = '多 X 轴示例';
+
+var colors = ['#5793f3', '#d14a61', '#675bba', '#FF1493'];
+
+
+option = {
+    color: colors,
+
+    tooltip: {
+        trigger: 'none',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+        data:['2014/15 winter influenza-related death rates', '2015/2016 winter influenza-related death rates', '2017 summer influenza-related death rates', '2017/18 death related']
+    },
+    grid: {
+        top: 70,
+        bottom: 50
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[2]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12", "Week 13", "Week 14", "Week 15", "Week 16", "Week 17"]
+        },
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[0]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return '' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12", "Week 13", "Week 14", "Week 15", "Week 16", "Week 17"]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name:'2014/15 Winter',
+            type:'line',
+            xAxisIndex: 1,
+            smooth: true,
+            data: [9, 19, 55, 103, 149, 208, 251, 308, 357, 389, 416, 439, 447, 474, 484, 498]
+        },
+        {
+            name:'2015/16 Winter',
+            type:'line',
+            smooth: true,
+            data: [3, 23, 32, 48, 67, 89, 105, 118, 134, 145, 160, 169, 176, 189, 204, 209]
+        },
+        {
+            name:'2017 Summer',
+            type:'line',
+            smooth: true,
+            data: [6, 16, 28, 39, 54, 67, 84, 111, 129, 184, 223, 278, 320, 372, 399, 416, 426]
+        },
+        {
+            name:'2017/18 Winter',
+            type:'line',
+            smooth: true,
+            data: [17, 39, 70, 104, 151, 203, 255, 303, 325, 351]
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
