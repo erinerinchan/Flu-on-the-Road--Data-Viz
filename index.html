@@ -117,7 +117,7 @@
                 <div id="container" style="height: 700%"></div>
                 <script type="text/javascript">
                     var dom = document.getElementById("container");
-                    var myChart = new Chart.init(dom);
+                    var myChart = echarts.init(document.getElementById('container'));
                     var app = {};
                     option = null;
                     app.title = '多 X 轴示例';
